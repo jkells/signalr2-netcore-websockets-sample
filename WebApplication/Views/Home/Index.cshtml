@@ -1,0 +1,30 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SignalR Example</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.1.min.js"></Script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        var hub = $.connection.myHub;
+        
+        hub.client.helloWorld = function() {
+            $("#output").append($("<p>Hello World Called. Transport is " + $.signalR.hub.transport.name  + "</p>"));
+        }
+        $.connection.hub.start();
+    </script>
+</head>
+<body>
+<div>
+    <h1>SignalR Sample</h1>
+    <p id="output"></p>
+</div>
+</body>
+</html>
